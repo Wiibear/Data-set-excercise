@@ -1,0 +1,42 @@
+---
+title: "Tits"
+author: "Bebis"
+format: html
+editor: visual
+echo: false
+---
+
+## Quarto
+
+```{r}
+#| label: load-packages
+library(tidyverse) # for data management
+library(broom) # for tidying data
+library(readxl) # for reading data in excel
+library(here) # to make code independent of Rstudio
+
+
+```
+
+```{r}
+#| label: load-data
+tit_data <- read_excel(here("data/Data_BE.xlsx")) |> 
+  
+  janitor::clean_names()
+
+
+```
+
+```{r}
+#| label: fig-graph
+#| fig-cap: Feather lengths....
+
+tit_plot <- ggplot(tit_data, 
+                   aes(rank, pc_social_attraction)
+                   , fill = novelty
+                   ) +
+  geom_point()
+tit_plot
+
+
+```
